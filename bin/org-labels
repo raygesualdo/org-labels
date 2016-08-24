@@ -20,6 +20,7 @@ program
   .version(version)
   .usage('<command>')
   .option('-d, --destructive', 'allow standardize to remove labels that are not found in the config file')
+    .option('-b, --blacklist [value]', 'comma separated list of repositories to ignore', _collectRepos, []);
 
 program
   .command('add <org> <label> <color>')
@@ -71,6 +72,13 @@ function co_labels(fn, args) {
     }
     process.exit()
   })
+}
+
+function _collectRepos(arg, repos) {
+  arg.split(",").forEach(function(s) {
+      repos.push(s);
+  });
+  return repos;
 }
 
 function* _org_labels(fn, args) {
