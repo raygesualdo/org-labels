@@ -291,10 +291,6 @@ function* get_repos(org, blacklist) {
   return repos
 }
 
-function _isBlacklisted(name) {
-
-}
-
 /*
  * Handles getting repos and sending requests for single-label commands.
  *
