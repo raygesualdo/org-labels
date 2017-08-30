@@ -126,6 +126,7 @@ function* standardize(args) {
     , auth   : this.auth
     , json   : true
     , resolveWithFullResponse: true
+    , simple : true
   }).catch(log_request_err('error retrieving config from repo:'))
 
   if (!res) process.exit()
