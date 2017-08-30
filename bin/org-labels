@@ -20,6 +20,7 @@ program
   .version(version)
   .usage('<command>')
   .option('-d, --destructive', 'allow standardize to remove labels that are not found in the config file')
+    .option('-b, --blacklist [value]', 'comma separated list of repositories to ignore', _collectRepos, []);
 
 program
   .command('add <org> <label> <color>')
@@ -73,6 +74,13 @@ function co_labels(fn, args) {
   })
 }
 
+function _collectRepos(arg, repos) {
+  arg.split(",").forEach(function(s) {
+      repos.push(s);
+  });
+  return repos;
+}
+
 function* _org_labels(fn, args) {
   yield* check_version()
 
@@ -80,7 +88,7 @@ function* _org_labels(fn, args) {
       configName: 'org-labels'
     , userAgent : 'org-labels'
     , note      : 'org-labels CLI tool'
-    , scopes    : []
+    , scopes    : ['repo']
   })
 
   yield check_github_ratelimit(auth)
