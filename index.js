@@ -195,6 +195,7 @@ function* handle_repo_labels(org, repo, config, destructive) {
       , json   : item
       , auth   : this.auth
       , resolveWithFullResponse: true
+      , simple : true
     }))
   }
 
@@ -335,6 +336,7 @@ function* send_label(org, repos, opts, method) {
       , json   : opts
       , auth   : this.auth
       , resolveWithFullResponse: true
+      , simple : true
     }))
   }
 
